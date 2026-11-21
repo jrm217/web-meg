@@ -2,6 +2,12 @@
 
 Web estática (HTML, CSS y un poco de JavaScript, sin WordPress ni base de datos) que sustituye a la web actual de montajeselectricosgarrido.es. Se puede alojar gratis en Netlify, Cloudflare Pages o GitHub Pages.
 
+## Dónde está publicada
+
+Versión de pruebas: https://web-meg.pages.dev (Cloudflare Pages, proyecto `web-meg`). Cada fusión en `main` se publica sola en un minuto.
+
+Si Cloudflare avisa de que el proyecto está desconectado de GitHub, revisa en https://github.com/settings/installations que la app **Cloudflare Workers and Pages** tenga acceso a `web-meg`. Ojo: "Retry deployment" vuelve a publicar el mismo commit, no el último.
+
 ## Ver la web en tu ordenador
 
 Abre `index.html` con el navegador. No hace falta instalar nada.
