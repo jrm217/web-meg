@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://montajeselectricosgarrido.es/</loc><priority>1.0</priority></url>
-  <url><loc>https://montajeselectricosgarrido.es/instalaciones-electricas.html</loc><priority>0.9</priority></url>
-  <url><loc>https://montajeselectricosgarrido.es/placas-solares.html</loc><priority>0.9</priority></url>
-  <url><loc>https://montajeselectricosgarrido.es/puntos-de-carga.html</loc><priority>0.9</priority></url>
-  <url><loc>https://montajeselectricosgarrido.es/contacto.html</loc><priority>0.8</priority></url>
+  <url><loc>https://montajeselectricosgarrido.es/instalaciones-electricas</loc><priority>0.9</priority></url>
+  <url><loc>https://montajeselectricosgarrido.es/placas-solares</loc><priority>0.9</priority></url>
+  <url><loc>https://montajeselectricosgarrido.es/puntos-de-carga</loc><priority>0.9</priority></url>
+  <url><loc>https://montajeselectricosgarrido.es/contacto</loc><priority>0.8</priority></url>
 </urlset>

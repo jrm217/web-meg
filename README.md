@@ -22,7 +22,7 @@ Abre `index.html` con el navegador. No hace falta instalar nada.
 | `assets/img/logo.svg` | **Logo provisional** (ver abajo) |
 | `assets/img/trabajos/` | Carpeta para las fotos de trabajos |
 | `sitemap.xml`, `robots.txt` | Para Google |
-| `_redirects` | Redirige las direcciones de la web antigua a las nuevas (Netlify / Cloudflare Pages) |
+| `_redirects` | Redirige las direcciones antiguas que cambian de nombre (Cloudflare Pages / Netlify). No añadas reglas de una página a sí misma con `.html`: Cloudflare ya quita el `.html` y se forma un bucle |
 
 ## Tareas pendientes antes de publicar
 
