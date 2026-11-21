@@ -27,7 +27,9 @@ Abre `index.html` con el navegador. No hace falta instalar nada.
 | `assets/fonts/` | Tipografías Space Grotesk (títulos) e Inter (texto), alojadas en la propia web (licencia libre OFL) |
 | `assets/js/main.js` | Menú del móvil, envío del formulario y aviso de "Abierto ahora / Cerrado" según el horario |
 | `assets/js/efectos.js` | Efectos: red eléctrica animada en la portada, brillo en tarjetas y apariciones al bajar. Para quitarlos, borra la línea `efectos.js` de los `.html` |
-| `assets/img/logo.svg` | **Logo provisional** (ver abajo) |
+| `assets/img/logo-meg.webp` | Emblema del logo (cuadrado con el rayo) para cabecera y pie |
+| `assets/img/logo-completo.jpg` | Logo completo, para redes sociales al compartir la web |
+| `assets/img/favicon-32.png`, `apple-touch-icon.png` | Icono de la pestaña y del móvil |
 | `assets/img/trabajos/` | Carpeta para las fotos de trabajos |
 | `sitemap.xml`, `robots.txt` | Para Google |
 | `_redirects` | Redirige las direcciones antiguas que cambian de nombre (Cloudflare Pages / Netlify). No añadas reglas de una página a sí misma con `.html`: Cloudflare ya quita el `.html` y se forma un bucle |
@@ -36,17 +38,16 @@ Abre `index.html` con el navegador. No hace falta instalar nada.
 
 En el código están marcadas con `PENDIENTE` (búscalo con Ctrl+F).
 
-1. **Logo**: sustituye `assets/img/logo.svg` por el logo original con el mismo nombre. Si es PNG, guárdalo como `assets/img/logo.png` y cambia `logo.svg` por `logo.png` en todos los `.html` (buscar y reemplazar).
-2. **Media o alta tensión**: la web dice "baja y media tensión" (el lema actual). Si es "alta", busca `media tensión` y cámbialo.
-3. **Años de experiencia**: la portada dice "Más de 15 años". Cámbialo en `index.html`.
-4. **WhatsApp**: usa el 653 204 609. Si es otro número, busca `wa.me/34653204609` y cámbialo.
-5. **Fotos de trabajos**: guarda las fotos en `assets/img/trabajos/` y en `index.html`, sección "Trabajos realizados", cambia cada `<div class="trabajo__foto">…</div>` por:
+1. **Media o alta tensión**: la web dice "baja y media tensión" (el lema actual). Si es "alta", busca `media tensión` y cámbialo.
+2. **Años de experiencia**: la portada dice "Más de 15 años". Cámbialo en `index.html`.
+3. **WhatsApp**: usa el 653 204 609. Si es otro número, busca `wa.me/34653204609` y cámbialo.
+4. **Fotos de trabajos**: guarda las fotos en `assets/img/trabajos/` y en `index.html`, sección "Trabajos realizados", cambia cada `<div class="trabajo__foto">…</div>` por:
    ```html
    <img class="trabajo__foto" src="assets/img/trabajos/foto1.jpg" alt="Qué se ve en la foto" loading="lazy" width="800" height="600">
    ```
    Mejor en JPG de unos 1200 px de ancho y menos de 300 KB.
-6. **Titular y NIF**: completa `[TITULAR]` y `[NIF]` en `aviso-legal.html` y `privacidad.html`.
-7. **Formulario**: ver la sección siguiente.
+5. **Titular y NIF**: completa `[TITULAR]` y `[NIF]` en `aviso-legal.html` y `privacidad.html`.
+6. **Formulario**: ver la sección siguiente.
 
 ## Activar el formulario de presupuesto (Web3Forms, gratis)
 
