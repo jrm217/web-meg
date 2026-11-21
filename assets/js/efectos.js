@@ -456,6 +456,101 @@
       });
     });
 
+    // 5e. Instalaciones: índice lateral que se rellena al bajar
+    document.querySelectorAll(".con-indice").forEach(function (caja) {
+      var lista = caja.querySelector(".indice ol");
+      var enlaces = caja.querySelectorAll("[data-indice]");
+      var bloques = [];
+      enlaces.forEach(function (a) { bloques.push(document.getElementById(a.getAttribute("data-indice"))); });
+      tareas.push(function (vh) {
+        var r = caja.getBoundingClientRect();
+        var linea = vh * 0.4;
+        if (lista) lista.style.setProperty("--avance", limitar((linea - r.top) / r.height).toFixed(3));
+        bloques.forEach(function (b, i) {
+          if (!b) return;
+          var br = b.getBoundingClientRect();
+          enlaces[i].classList.toggle("activo", br.top < linea && br.bottom > linea);
+          enlaces[i].classList.toggle("pasado", br.top < linea);
+        });
+      });
+    });
+
+    // 5f. Listas que se marcan una a una
+    if ("IntersectionObserver" in window) {
+      var obsItems = new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add("visto"); obsItems.unobserve(e.target); }
+        });
+      }, { threshold: 0.25 });
+      document.querySelectorAll(".items").forEach(function (ul) {
+        ul.querySelectorAll("li").forEach(function (li, i) { li.style.setProperty("--i", i); });
+        ul.classList.add("animable");
+        obsItems.observe(ul);
+      });
+    }
+
+    // 5g. Placas solares: el camino de la energía
+    document.querySelectorAll(".flujo").forEach(function (sec) {
+      sec.classList.add("animada");
+      var escena = sec.querySelector(".flujo__escena");
+      var pasos = sec.querySelectorAll(".fpaso");
+      var lineas = sec.querySelectorAll(".flujo__linea");
+      var corrientes = sec.querySelectorAll(".flujo__corriente");
+      var mq = window.matchMedia("(max-width: 899px)");
+      tareas.push(function (vh) {
+        var t = [];
+        if (mq.matches) {
+          // En móvil la escena no se queda fija: avanza mientras cruza la pantalla
+          var r = escena.getBoundingClientRect();
+          var p = limitar((vh * 0.92 - r.top) / (vh * 0.7));
+          for (var k = 0; k < 4; k++) t.push(limitar(p * 4 - k));
+          pasos.forEach(function (art) { art.classList.remove("activo"); });
+        } else {
+          pasos.forEach(function (art, i) {
+            var a = art.getBoundingClientRect();
+            t.push(limitar((vh * 0.65 - a.top) / (a.height * 0.5)));
+            art.classList.toggle("activo", a.top < vh * 0.65 && a.bottom > vh * 0.3);
+          });
+        }
+        sec.style.setProperty("--sol", (0.35 + t[0] * 0.65).toFixed(3));
+        sec.style.setProperty("--rayos", t[0] > 0.2 ? 1 : 0);
+        sec.style.setProperty("--bateria", t[2].toFixed(3));
+        lineas.forEach(function (l, i) {
+          var tp = t[+l.getAttribute("data-paso")] || 0;
+          l.style.setProperty("--trazo", (1 - tp).toFixed(3));
+          corrientes[i].classList.toggle("on", tp > 0.97);
+        });
+        sec.classList.toggle("produce", t[0] > 0.5);
+        sec.classList.toggle("casa", t[1] > 0.6);
+        sec.classList.toggle("red", t[3] > 0.97);
+      });
+    });
+
+    // 5h. Puntos de carga: el cargador se llena al bajar
+    document.querySelectorAll(".carga").forEach(function (sec) {
+      sec.classList.add("animada");
+      var pct = sec.querySelector("[data-carga-pct]");
+      var txt = sec.querySelector("[data-carga-txt]");
+      var cpasos = sec.querySelectorAll(".cpaso");
+      var texto = sec.querySelector(".carga__texto");
+      var ultimo = -1;
+      tareas.push(function (vh) {
+        var r = texto.getBoundingClientRect();
+        var p = limitar((vh * 0.7 - r.top) / Math.max(1, r.height - vh * 0.35));
+        var n = Math.round(p * 100);
+        sec.style.setProperty("--carga", p.toFixed(3));
+        cpasos.forEach(function (c, i) {
+          var a = c.getBoundingClientRect();
+          c.classList.toggle("activo", a.top < vh * 0.7);
+        });
+        if (n === ultimo) return;
+        ultimo = n;
+        pct.textContent = n;
+        sec.classList.toggle("llena", n >= 100);
+        txt.textContent = n >= 100 ? "Carga completa" : n > 0 ? "Cargando…" : "Conecta el coche";
+      });
+    });
+
     if (!tareas.length) return;
     var pendiente = false;
     function actualizar() {
