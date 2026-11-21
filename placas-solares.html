@@ -55,11 +55,19 @@
   <main id="contenido">
     <section class="cabecera-pagina">
       <div class="contenedor">
+        <div class="cabecera-pagina__rejilla">
+          <div>
         <nav class="migas" aria-label="Ruta"><a href="index.html">Inicio</a> / <span>Placas solares</span></nav>
         <span class="antetitulo"><b>02</b> Placas solares</span>
         <h1>Placas solares en Sevilla</h1>
         <p>Instalaciones fotovoltaicas para viviendas, oficinas, edificios y naves. Nos ocupamos de todo, también de los trámites.</p>
-        <ul class="atajos"><li><a href="#ventajas">Ventajas</a></li><li><a href="#proceso">Cómo trabajamos</a></li><li><a href="#excedentes">Energía sobrante</a></li></ul>
+        <ul class="atajos"><li><a href="#ventajas">Ventajas</a></li><li><a href="#como-funciona">Cómo funciona</a></li><li><a href="#proceso">Cómo trabajamos</a></li></ul>
+          </div>
+          <figure class="cabecera-pagina__foto">
+            <img src="assets/img/servicios/c3-placas-solares.svg" alt="Placas solares sobre un tejado al atardecer" width="800" height="500">
+            <figcaption class="foto-chip"><i></i>En servicio</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
@@ -83,10 +91,91 @@
       </div>
     </section>
 
+    <section class="seccion flujo" id="como-funciona">
+      <div class="contenedor">
+        <div class="seccion__cabeza">
+          <span class="antetitulo"><b>02</b> Cómo funciona</span>
+          <h2>Del tejado a tu enchufe</h2>
+          <p>Baja y sigue el camino de la energía.</p>
+        </div>
+        <div class="flujo__rejilla">
+          <div class="flujo__escena">
+            <div class="flujo__marco">
+              <svg viewBox="0 0 600 440" class="flujo__svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="fl-cielo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b1f26"/><stop offset="1" stop-color="#3a1220"/></linearGradient>
+                <radialGradient id="fl-sol" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffe3a3"/><stop offset=".4" stop-color="#ffc35c" stop-opacity=".7"/><stop offset="1" stop-color="#ffc35c" stop-opacity="0"/></radialGradient>
+                <linearGradient id="fl-panel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b3c5a"/><stop offset="1" stop-color="#121c2e"/></linearGradient>
+              </defs>
+              <rect x="0" y="0" width="600" height="440" rx="18" fill="url(#fl-cielo)"/>
+              <g class="flujo__sol">
+                <circle cx="110" cy="96" r="80" fill="url(#fl-sol)"/>
+                <circle cx="110" cy="96" r="30" fill="#fff1cf"/>
+              </g>
+              <g class="flujo__rayos" stroke="#ffd27a" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 10">
+                <path d="M146 112 L 262 196"/><path d="M134 124 L 238 186"/><path d="M152 100 L 290 214"/>
+              </g>
+              <rect x="0" y="380" width="600" height="60" fill="#121519"/>
+              <!-- casa -->
+              <path d="M140 250 L 230 178 L 320 250 Z" fill="#9a0026"/>
+              <g transform="rotate(38.66 230 178)">
+                <rect x="242" y="167" width="44" height="9" rx="1.5" fill="url(#fl-panel)" stroke="#c3c6cc" stroke-width="1.5" class="flujo__panel"/>
+                <rect x="290" y="167" width="44" height="9" rx="1.5" fill="url(#fl-panel)" stroke="#c3c6cc" stroke-width="1.5" class="flujo__panel"/>
+              </g>
+              <rect x="156" y="248" width="148" height="132" fill="#23282f"/>
+              <rect x="176" y="276" width="40" height="34" rx="3" class="flujo__ventana"/>
+              <rect x="244" y="276" width="40" height="34" rx="3" class="flujo__ventana"/>
+              <rect x="212" y="326" width="36" height="54" rx="3" fill="#33373d"/>
+              <!-- inversor -->
+              <rect x="368" y="236" width="52" height="64" rx="8" fill="#e4e5e8"/>
+              <rect x="377" y="246" width="34" height="16" rx="3" fill="#121519"/>
+              <circle cx="394" cy="282" r="5" class="flujo__led"/>
+              <text x="394" y="318" class="flujo__rotulo">INVERSOR</text>
+              <!-- bateria -->
+              <rect x="448" y="318" width="44" height="62" rx="7" fill="#1b1f24" stroke="#8b9099" stroke-width="2"/>
+              <rect x="462" y="312" width="16" height="7" rx="2" fill="#8b9099"/>
+              <rect x="453" y="323" width="34" height="52" rx="4" class="flujo__carga"/>
+              <text x="470" y="398" class="flujo__rotulo">BATERÍA</text>
+              <!-- red -->
+              <g class="flujo__torre" fill="none" stroke="#8b9099" stroke-width="2.5" stroke-linejoin="round">
+                <path d="M520 380 L 540 120 L 560 380 M526 300 H 554 M532 220 H 548 M526 300 L 548 220 M554 300 L 532 220"/>
+                <path d="M508 142 H 572 M514 172 H 566"/>
+              </g>
+              <text x="540" y="398" class="flujo__rotulo">RED</text>
+              <path d="M314 234 C 336 230, 352 238, 368 254" pathLength="1" class="flujo__linea" data-paso="0"/><path d="M314 234 C 336 230, 352 238, 368 254" pathLength="1" class="flujo__corriente" data-paso="0"/><path d="M394 300 V 336 H 304" pathLength="1" class="flujo__linea" data-paso="1"/><path d="M394 300 V 336 H 304" pathLength="1" class="flujo__corriente" data-paso="1"/><path d="M420 286 H 470 V 318" pathLength="1" class="flujo__linea" data-paso="2"/><path d="M420 286 H 470 V 318" pathLength="1" class="flujo__corriente" data-paso="2"/><path d="M404 236 C 420 180, 470 150, 508 142" pathLength="1" class="flujo__linea" data-paso="3"/><path d="M404 236 C 420 180, 470 150, 508 142" pathLength="1" class="flujo__corriente" data-paso="3"/>
+            </svg>
+            </div>
+          </div>
+          <div class="flujo__pasos">
+            <article class="fpaso" data-i="0">
+              <span class="fpaso__num">01 / 04</span>
+              <h3>El sol produce</h3>
+              <p>Las placas convierten la luz en electricidad y el inversor la prepara para que la uses en casa.</p>
+            </article>
+            <article class="fpaso" data-i="1">
+              <span class="fpaso__num">02 / 04</span>
+              <h3>Tu casa consume primero</h3>
+              <p>Lo que se produce se gasta al momento: nevera, aire acondicionado, lavadora… Esa energía ya no la pagas.</p>
+            </article>
+            <article class="fpaso" data-i="2">
+              <span class="fpaso__num">03 / 04</span>
+              <h3>Lo que sobra, a la batería</h3>
+              <p>Con baterías guardas la energía del día para usarla por la noche.</p>
+            </article>
+            <article class="fpaso" data-i="3">
+              <span class="fpaso__num">04 / 04</span>
+              <h3>O a la red, y te la descuentan</h3>
+              <p>Con la compensación de excedentes, lo que viertes a la red se descuenta en tu factura. Si prefieres no verter nada, instalamos un sistema antivertido.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="seccion seccion--gris" id="proceso">
       <div class="contenedor">
         <div class="seccion__cabeza">
-          <span class="antetitulo"><b>02</b> Cómo trabajamos</span>
+          <span class="antetitulo"><b>03</b> Cómo trabajamos</span>
           <h2>De la idea a la instalación funcionando</h2>
         </div>
         <ol class="proceso">
@@ -98,19 +187,6 @@
       </div>
     </section>
 
-    <section class="seccion" id="excedentes">
-      <div class="contenedor">
-        <div class="seccion__cabeza">
-          <span class="antetitulo"><b>03</b> Energía sobrante</span>
-          <h2>¿Qué hacer con lo que no consumes?</h2>
-        </div>
-        <div class="rejilla rejilla--3">
-          <div class="tarjeta"><span class="tarjeta__num">A</span><h3>Baterías</h3><p>Guarda la energía del día para usarla por la noche.</p></div>
-          <div class="tarjeta"><span class="tarjeta__num">B</span><h3>Compensación</h3><p>Viértela a la red y te la descuentan en la factura.</p></div>
-          <div class="tarjeta"><span class="tarjeta__num">C</span><h3>Antivertido</h3><p>Un sistema que evita verter energía a la red.</p></div>
-        </div>
-      </div>
-    </section>
 
     <section class="seccion seccion--gris">
       <div class="contenedor">
