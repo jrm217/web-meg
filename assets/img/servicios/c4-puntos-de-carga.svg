@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="pared" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b1f24"/><stop offset="1" stop-color="#262b32"/></linearGradient>
+    <linearGradient id="coche" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c8103f"/><stop offset="1" stop-color="#74001d"/></linearGradient>
+    <radialGradient id="led" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#3ddc84" stop-opacity=".55"/><stop offset="1" stop-color="#3ddc84" stop-opacity="0"/></radialGradient>
+    <radialGradient id="foco" cx=".5" cy="0" r="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#pared)"/>
+  <path d="M220 0 H580 L700 380 H100Z" fill="url(#foco)"/>
+  <rect x="360" y="0" width="80" height="10" fill="#c3c6cc"/>
+  <rect y="380" width="800" height="120" fill="#121519"/>
+  <path d="M0 380 H800" stroke="#33373d" stroke-width="3"/>
+  <g stroke="#ffd27a" stroke-width="6" opacity=".55"><path d="M60 470 L120 410 M700 470 L640 410"/></g>
+  <!-- wallbox -->
+  <circle cx="120" cy="215" r="80" fill="url(#led)"/>
+  <rect x="80" y="150" width="80" height="120" rx="14" fill="#e4e5e8"/>
+  <rect x="94" y="168" width="52" height="30" rx="4" fill="#121519"/>
+  <text x="120" y="189" fill="#3ddc84" font-family="Arial, sans-serif" font-size="14" font-weight="700" text-anchor="middle">7,4 kW</text>
+  <rect x="104" y="214" width="32" height="6" rx="3" fill="#3ddc84"/>
+  <circle cx="120" cy="246" r="9" fill="#c3c6cc" stroke="#8b9099" stroke-width="2"/>
+  <!-- cable -->
+  <path d="M120 270 C120 360 210 400 300 380 S440 300 470 300" fill="none" stroke="#121519" stroke-width="9" stroke-linecap="round"/>
+  <path d="M120 270 C120 360 210 400 300 380 S440 300 470 300" fill="none" stroke="#3ddc84" stroke-width="2.5" stroke-dasharray="4 14" stroke-linecap="round"/>
+  <!-- coche -->
+  <ellipse cx="580" cy="388" rx="230" ry="12" fill="#000" opacity=".45"/>
+  <path d="M352 352 Q350 300 400 292 L470 282 Q520 222 600 220 L680 222 Q730 226 770 290 Q800 300 800 340 L798 362 Q796 376 780 376 H372 Q352 376 352 352Z" fill="url(#coche)"/>
+  <path d="M492 284 Q530 236 596 234 L604 284Z" fill="#2a3446"/><path d="M618 284 L614 234 L676 236 Q714 242 744 284Z" fill="#2a3446"/>
+  <path d="M492 284 H750" stroke="#74001d" stroke-width="3"/>
+  <path d="M606 290 V360" stroke="#74001d" stroke-width="2"/>
+  <rect x="470" y="294" width="20" height="14" rx="3" fill="#121519"/>
+  <path d="M770 300 h22 v14 h-24z" fill="#ffe3a3"/>
+  <path d="M356 310 h16 v14 h-18z" fill="#ff9fb6"/>
+  <circle cx="450" cy="376" r="40" fill="#121519"/><circle cx="450" cy="376" r="20" fill="#5a6069"/><circle cx="450" cy="376" r="7" fill="#33373d"/>
+  <circle cx="710" cy="376" r="40" fill="#121519"/><circle cx="710" cy="376" r="20" fill="#5a6069"/><circle cx="710" cy="376" r="7" fill="#33373d"/>
+  <!-- icono de carga -->
+  <circle cx="560" cy="160" r="30" fill="#121519" stroke="#3ddc84" stroke-width="3"/>
+  <path d="M564 140 l-16 24 h12 l-4 18 16 -24 h-12z" fill="#3ddc84"/>
+  <rect x="540" y="200" width="40" height="6" rx="3" fill="#33373d"/><rect x="540" y="200" width="28" height="6" rx="3" fill="#3ddc84"/>
+</svg>

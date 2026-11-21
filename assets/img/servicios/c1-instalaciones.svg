@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="cielo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#14181d"/><stop offset="1" stop-color="#3a1220"/></linearGradient>
+    <radialGradient id="luz" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffd27a" stop-opacity=".55"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
+    <linearGradient id="vent" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe3a3"/><stop offset="1" stop-color="#ffb347"/></linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#cielo)"/>
+  <g fill="#fff" opacity=".5"><circle cx="90" cy="60" r="1.6"/><circle cx="220" cy="38" r="1.2"/><circle cx="420" cy="70" r="1.4"/><circle cx="610" cy="44" r="1.2"/><circle cx="730" cy="96" r="1.6"/><circle cx="330" cy="110" r="1"/></g>
+  <circle cx="680" cy="92" r="30" fill="#f3e6d0" opacity=".9"/><circle cx="694" cy="84" r="28" fill="#1a1a20"/>
+  <rect y="420" width="800" height="80" fill="#0f1215"/>
+  <!-- poste y acometida -->
+  <rect x="96" y="150" width="10" height="272" fill="#2c3138"/><rect x="70" y="168" width="62" height="8" rx="2" fill="#2c3138"/>
+  <path d="M132 172 Q250 230 330 228" fill="none" stroke="#5a6069" stroke-width="2.5"/>
+  <path d="M70 172 Q-20 210 -40 205" fill="none" stroke="#5a6069" stroke-width="2.5"/>
+  <!-- casa -->
+  <path d="M300 250 L470 140 L640 250 Z" fill="#9a0026"/>
+  <path d="M300 250 L470 140 L640 250" fill="none" stroke="#c8103f" stroke-width="6" stroke-linejoin="round"/>
+  <rect x="320" y="248" width="300" height="174" fill="#23282f"/>
+  <rect x="320" y="248" width="300" height="10" fill="#1b1f24"/>
+  <rect x="540" y="160" width="34" height="56" fill="#2c3138"/>
+  <!-- halos -->
+  <circle cx="385" cy="305" r="90" fill="url(#luz)"/><circle cx="555" cy="305" r="90" fill="url(#luz)"/><circle cx="470" cy="196" r="60" fill="url(#luz)"/>
+  <!-- ventanas -->
+  <rect x="352" y="278" width="66" height="56" rx="3" fill="url(#vent)"/><path d="M385 278 V334 M352 306 H418" stroke="#23282f" stroke-width="4"/>
+  <rect x="522" y="278" width="66" height="56" rx="3" fill="url(#vent)"/><path d="M555 278 V334 M522 306 H588" stroke="#23282f" stroke-width="4"/>
+  <circle cx="470" cy="200" r="20" fill="url(#vent)"/><path d="M470 180 V220 M450 200 H490" stroke="#9a0026" stroke-width="4"/>
+  <!-- puerta -->
+  <rect x="446" y="340" width="48" height="82" rx="4" fill="#33373d"/><circle cx="484" cy="384" r="3" fill="#c3c6cc"/>
+  <circle cx="470" cy="330" r="5" fill="#ffe3a3"/><circle cx="470" cy="330" r="22" fill="url(#luz)"/>
+  <!-- cuadro y contador en fachada -->
+  <rect x="332" y="352" width="28" height="40" rx="3" fill="#1b1f24" stroke="#5a6069"/><path d="M341 362 l6 -6 -2 8 6 -1 -8 10 2 -8 -6 1z" fill="#ff9fb6"/>
+  <!-- farola -->
+  <rect x="712" y="250" width="6" height="172" fill="#2c3138"/><path d="M715 252 q0 -20 -26 -20" fill="none" stroke="#2c3138" stroke-width="6"/>
+  <rect x="676" y="228" width="26" height="8" rx="3" fill="#33373d"/><path d="M676 236 L640 330 H738 L702 236Z" fill="#ffd27a" opacity=".12"/>
+  <!-- seto -->
+  <path d="M0 422 q30 -30 60 0 q30 -26 60 0 q30 -30 60 0 q26 -24 56 0 Z" fill="#1d2a22"/>
+  <path d="M640 422 q24 -26 50 0 q24 -22 48 0 q30 -28 62 0 Z" fill="#1d2a22"/>
+</svg>

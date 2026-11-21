@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="cielo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#171b21"/><stop offset=".7" stop-color="#2b1b24"/><stop offset="1" stop-color="#4a1424"/></linearGradient>
+    <radialGradient id="brillo" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ff9fb6" stop-opacity=".5"/><stop offset="1" stop-color="#ff9fb6" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#cielo)"/>
+  <path d="M0 360 Q160 300 330 340 T800 320 V500 H0Z" fill="#191d22"/>
+  <path d="M0 420 Q220 380 420 410 T800 400 V500 H0Z" fill="#101317"/>
+  <!-- torres -->
+  <g fill="none" stroke="#5a6069" stroke-width="3" stroke-linejoin="round">
+    <path d="M120 360 L150 120 L180 360 M128 300 H172 M136 240 H164 M142 180 H158 M128 300 L164 240 M172 300 L136 240 M136 240 L158 180 M164 240 L142 180"/>
+    <path d="M100 150 H200 M112 190 H188"/>
+    <path d="M420 340 L440 170 L460 340 M426 290 H454 M432 240 H448 M426 290 L448 240 M454 290 L432 240"/>
+    <path d="M404 196 H476 M412 226 H468"/>
+  </g>
+  <!-- lineas -->
+  <g fill="none" stroke="#8b9099" stroke-width="1.6">
+    <path d="M-20 160 Q50 182 100 150 Q260 200 404 196 Q600 236 820 210"/>
+    <path d="M-20 196 Q60 214 112 190 Q270 238 412 226 Q600 262 820 246"/>
+    <path d="M200 150 Q310 200 404 196"/>
+  </g>
+  <g fill="none" stroke="#ff9fb6" stroke-width="2" stroke-dasharray="6 18" opacity=".9">
+    <path d="M-20 160 Q50 182 100 150 Q260 200 404 196 Q600 236 820 210"/>
+  </g>
+  <!-- centro de transformacion prefabricado -->
+  <circle cx="610" cy="360" r="140" fill="url(#brillo)"/>
+  <rect x="500" y="300" width="230" height="130" rx="6" fill="#c3c6cc"/>
+  <path d="M488 302 H742 L730 284 H500Z" fill="#8b9099"/>
+  <rect x="500" y="300" width="230" height="8" fill="#a3a7ae"/>
+  <rect x="524" y="330" width="62" height="100" rx="3" fill="#9a0026"/>
+  <rect x="604" y="330" width="62" height="100" rx="3" fill="#9a0026"/>
+  <g fill="none" stroke="#74001d" stroke-width="2"><path d="M532 344 H578 M532 352 H578 M532 360 H578 M612 344 H658 M612 352 H658 M612 360 H658"/></g>
+  <path d="M555 382 l18 -10 -7 14 12 0 -22 16 6 -14 -12 0z" fill="#ffd27a"/>
+  <path d="M555 382 m80 0 l18 -10 -7 14 12 0 -22 16 6 -14 -12 0z" fill="#ffd27a"/>
+  <rect x="684" y="330" width="30" height="20" rx="2" fill="#33373d"/><circle cx="699" cy="340" r="4" fill="#3ddc84"/>
+  <!-- valla -->
+  <g stroke="#5a6069" stroke-width="2"><path d="M470 440 H780"/><path d="M480 400 V444 M510 400 V444 M750 400 V444 M778 400 V444"/></g>
+  <path d="M470 404 H520 M740 404 H790" stroke="#5a6069" stroke-width="2"/>
+  <g fill="#fff" opacity=".45"><circle cx="300" cy="60" r="1.4"/><circle cx="560" cy="50" r="1.2"/><circle cx="720" cy="80" r="1.6"/><circle cx="60" cy="70" r="1.2"/></g>
+</svg>
