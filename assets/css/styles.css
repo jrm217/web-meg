@@ -138,9 +138,9 @@ a:hover { color: var(--granate-oscuro); }
 .cabecera.con-sombra { background: rgba(18, 21, 25, 0.9); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); }
 .cabecera .contenedor { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: var(--cabecera); }
 
-/* Hueco del logo: sustituye assets/img/logo.svg por el logo definitivo */
+/* Logo: emblema del rayo (assets/img/logo-meg.webp) */
 .marca { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--blanco); }
-.marca__logo { width: 46px; height: 46px; flex: none; object-fit: contain; border-radius: 8px; }
+.marca__logo { width: 50px; height: 53px; flex: none; object-fit: contain; filter: drop-shadow(0 4px 10px rgba(154, 0, 38, 0.35)); }
 .marca__texto { display: flex; flex-direction: column; line-height: 1.1; }
 .marca__nombre { font-family: var(--titulos); font-weight: 600; font-size: 1.05rem; color: var(--blanco); letter-spacing: -0.01em; }
 .marca__lema { font-size: 0.74rem; color: var(--o-suave); letter-spacing: 0.02em; }
