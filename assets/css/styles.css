@@ -537,7 +537,32 @@ a:hover { color: var(--granate-oscuro); }
 .paso__enlace:hover svg { transform: translateX(4px); }
 .paso--extra { min-height: 0; padding-bottom: 8px; }
 .paso--extra:hover h3 { color: var(--granate); }
-@media (max-width: 899px) { .paso { min-height: 56vh; } .paso:first-child { padding-top: 10px; } }
+/* Móvil: en lugar del cuadro grande, una regleta fija con los 4 circuitos */
+.historia__barra { display: none; }
+@media (max-width: 899px) {
+  .historia__escena { display: none; }
+  .historia__barra {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    position: sticky; top: calc(var(--cabecera) + 8px); z-index: 3;
+    padding: 10px 14px; border-radius: 16px; background: rgba(18, 21, 25, 0.94); backdrop-filter: blur(8px);
+    box-shadow: 0 12px 30px rgba(18, 21, 25, 0.25);
+    font-family: var(--titulos); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; color: var(--o-suave);
+  }
+  .barra__mgs { display: flex; gap: 10px; }
+  .mini { display: flex; flex-direction: column; align-items: center; gap: 4px; transition: color 0.3s; }
+  .mini__cuerpo { position: relative; width: 18px; height: 28px; border-radius: 4px; background: #e8e9ec; box-shadow: inset 0 0 0 2px #c3c6cc; }
+  .mini__cuerpo b { position: absolute; left: 5px; right: 5px; top: 12px; height: 11px; border-radius: 2px; background: var(--granate); transition: transform 0.35s cubic-bezier(.3,1.5,.5,1); }
+  .mini.on { color: #fff; }
+  .mini.on .mini__cuerpo b { transform: translateY(-8px); }
+  .mini.on .mini__cuerpo { box-shadow: inset 0 0 0 2px #c3c6cc, 0 0 12px rgba(61, 220, 132, 0.45); }
+  .barra__cuenta { text-align: right; text-transform: uppercase; line-height: 1.3; }
+  .barra__cuenta b { display: block; font-size: 1.3rem; letter-spacing: 0; color: var(--ok); }
+  .historia__pasos { margin-top: 8px; }
+  .paso { min-height: 0; padding-top: 34px; padding-bottom: 34px; }
+  .historia:not(.animada) .historia__barra { position: relative; top: 0; }
+  .historia:not(.animada) .mini__cuerpo b { transform: translateY(-8px); }
+  .historia:not(.animada) .mini { color: #fff; }
+}
 
 /* Estado "todo encendido": sin JavaScript o con "reducir movimiento" */
 .historia:not(.animada) .mg .mg__palanca, .historia:not(.animada) .iga .mg__palanca { transform: translateY(-28px); }

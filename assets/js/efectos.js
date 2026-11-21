@@ -365,25 +365,30 @@
       var corrientes = hist.querySelectorAll(".cable__corriente");
       var nodosSvg = hist.querySelectorAll(".nodo");
       var iga = hist.querySelector(".iga"), dif = hist.querySelector(".dif");
-      var contador = hist.querySelector("[data-circuitos]");
+      var contadores = hist.querySelectorAll("[data-circuitos]");
+      var minis = hist.querySelectorAll(".mini");
       var contenedorPasos = hist.querySelector(".historia__pasos");
       var anterior = -1;
+      var mqMovil = window.matchMedia("(max-width: 899px)");
       tareas.push(function (vh) {
         var r = contenedorPasos.getBoundingClientRect();
+        // En móvil no hay puerta: los circuitos se encienden antes, al asomar cada imagen
+        var movil = mqMovil.matches, ref = movil ? 0.8 : 0.62;
         // La puerta se abre al entrar la sección
         var puerta = limitar((vh * 0.62 - r.top) / (vh * 0.3));
         escena.style.setProperty("--puerta", puerta.toFixed(3));
-        var general = puerta > 0.95;
+        var general = movil ? r.top < vh * ref : puerta > 0.95;
         iga.classList.toggle("on", general);
         dif.classList.toggle("on", general);
         var encendidos = 0;
         pasos.forEach(function (art, i) {
           var a = art.getBoundingClientRect();
-          var t = limitar((vh * 0.62 - a.top) / (a.height * 0.55));
+          var t = limitar((vh * ref - a.top) / (a.height * 0.55));
           if (!general) t = 0;
           cables[i].style.setProperty("--trazo", (1 - t).toFixed(3));
           var on = t > 0.12, lleno = t > 0.97;
           mgs[i].classList.toggle("on", on);
+          if (minis[i]) minis[i].classList.toggle("on", on);
           corrientes[i].classList.toggle("on", lleno);
           nodosSvg[i].classList.toggle("on", lleno);
           if (on) encendidos++;
@@ -394,7 +399,7 @@
         if (extra) { var e = extra.getBoundingClientRect(); extra.classList.toggle("activo", e.top < vh * 0.7); }
         if (encendidos !== anterior) {
           anterior = encendidos;
-          contador.textContent = encendidos;
+          contadores.forEach(function (c) { c.textContent = encendidos; });
           escena.style.setProperty("--carga", (encendidos / 4).toFixed(2));
           hist.classList.toggle("en-servicio", encendidos > 0);
           var estado = hist.querySelector(".cuadro__estado");
