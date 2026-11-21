@@ -29,11 +29,11 @@
   --grafito: #1b1f24;
   --gris-oscuro: #33373d;
   --texto: #4b4f58;
-  --texto-suave: #6b7078;
+  --texto-suave: #555a62;
   --borde: #e4e5e8;
   --fondo-claro: #f4f4f5;
-  --fondo: #e8eaed;        /* fondo general gris */
-  --fondo-alterno: #dee1e5; /* secciones alternas */
+  --fondo: #d6d9de;        /* fondo general gris */
+  --fondo-alterno: #c9cdd3; /* secciones alternas */
   --blanco: #ffffff;
 
   /* Sobre fondo oscuro */
