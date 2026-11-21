@@ -393,32 +393,141 @@ a:hover { color: var(--granate-oscuro); }
 .ventaja h3 { margin: 14px 0 10px; font-size: 1.35rem; }
 .ventaja p { color: var(--o-texto); margin: 0; }
 
-/* ---------- Proceso con línea de corriente ---------- */
-.proceso { list-style: none; padding: 0; margin: 0; display: grid; gap: 28px; position: relative; counter-reset: paso; }
-@media (min-width: 900px) {
-  .proceso { grid-template-columns: repeat(4, 1fr); gap: 24px; }
-  .proceso::before {
-    content: ""; position: absolute; top: 27px; left: 28px; right: 28px; height: 2px;
-    background: linear-gradient(90deg, var(--borde), var(--borde));
-  }
-  .proceso::after {
-    content: ""; position: absolute; top: 27px; left: 28px; height: 2px; width: 120px;
-    background: linear-gradient(90deg, transparent, var(--granate-vivo), transparent);
-    animation: recorrido 3.5s linear infinite;
-  }
-}
-@keyframes recorrido { from { transform: translateX(0); } to { transform: translateX(calc(min(100vw, 1200px) - 200px)); } }
-.proceso li { position: relative; counter-increment: paso; }
+/* ---------- Proceso: la línea avanza con el scroll (--avance la pone efectos.js) ---------- */
+.proceso { list-style: none; padding: 0; margin: 0; display: grid; gap: 34px; position: relative; counter-reset: paso; --avance: 1; }
+.proceso::before, .proceso::after { content: ""; position: absolute; left: 27px; top: 28px; bottom: 28px; width: 2px; background: var(--borde); }
+.proceso::after { background: linear-gradient(var(--granate), var(--granate-vivo)); transform-origin: top; transform: scaleY(var(--avance)); box-shadow: 0 0 12px rgba(200, 16, 63, 0.6); }
+.proceso li { position: relative; counter-increment: paso; padding-left: 80px; min-height: 56px; }
 .proceso li::before {
   content: counter(paso, decimal-leading-zero);
-  position: relative; z-index: 1;
+  position: absolute; left: 0; top: 0; z-index: 1;
   display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%;
-  background: var(--blanco); border: 2px solid var(--granate); color: var(--granate);
-  font-family: var(--titulos); font-weight: 600; margin-bottom: 20px;
+  background: var(--blanco); border: 2px solid var(--borde); color: var(--texto-suave);
+  font-family: var(--titulos); font-weight: 600;
   box-shadow: 0 0 0 8px var(--fondo-claro);
+  transition: background 0.4s, border-color 0.4s, color 0.4s, box-shadow 0.4s, transform 0.4s;
+}
+.proceso li.encendido::before { background: var(--granate); border-color: var(--granate); color: var(--blanco); box-shadow: 0 0 0 8px var(--fondo-claro), 0 0 28px rgba(200, 16, 63, 0.55); transform: scale(1.06); }
+@media (min-width: 900px) {
+  .proceso { grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .proceso::before, .proceso::after { left: 28px; right: 28px; top: 27px; bottom: auto; width: auto; height: 2px; }
+  .proceso::after { transform-origin: left; transform: scaleX(var(--avance)); background: linear-gradient(90deg, var(--granate), var(--granate-vivo)); }
+  .proceso li { padding-left: 0; padding-top: 80px; }
 }
 .proceso strong { display: block; font-family: var(--titulos); color: var(--noche); font-size: 1.2rem; margin-bottom: 6px; font-weight: 600; }
 .proceso p { margin: 0; color: var(--texto-suave); }
+
+/* ---------- Servicios: el cuadro que se abre al bajar ---------- */
+.historia__rejilla { display: grid; gap: 28px; }
+@media (min-width: 900px) { .historia__rejilla { grid-template-columns: 1.05fr 1fr; gap: 64px; } }
+.historia__escena { position: sticky; top: calc(var(--cabecera) + 12px); z-index: 2; align-self: start; }
+@media (min-width: 900px) { .historia__escena { top: calc(var(--cabecera) + max(24px, (100vh - var(--cabecera) - 600px) / 2)); } }
+.escena {
+  position: relative; overflow: hidden; isolation: isolate;
+  background: var(--noche); border-radius: 28px; padding: clamp(14px, 2.4vw, 26px);
+  box-shadow: 0 30px 70px rgba(18, 21, 25, 0.25);
+}
+.escena::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background:
+    radial-gradient(420px circle at 85% 15%, rgba(154, 0, 38, calc(0.15 + var(--carga, 1) * 0.45)), transparent 65%),
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 40px 40px,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 40px 40px;
+  transition: background 0.6s;
+}
+.escena__lienzo { position: relative; aspect-ratio: 560 / 520; perspective: 1400px; }
+.escena__svg { width: 100%; height: 100%; overflow: visible; }
+.escena__pie { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding: 12px 16px; border: 1px solid var(--o-borde); border-radius: 14px; font-family: var(--titulos); font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--o-suave); }
+.escena__pie b { color: var(--ok); font-size: 1.05rem; letter-spacing: 0.02em; }
+@media (max-width: 899px) {
+  .escena { border-radius: 20px; }
+  .escena__lienzo { max-height: 34vh; aspect-ratio: auto; height: 34vh; }
+  .escena__pie { padding: 8px 12px; font-size: 0.75rem; }
+}
+
+.cuadro__rotulo { fill: rgba(255, 255, 255, 0.45); font: 600 11px var(--titulos); letter-spacing: 0.16em; text-anchor: middle; }
+.cuadro__estado { fill: #f59e0b; transition: fill 0.4s; }
+.historia.en-servicio .cuadro__estado { fill: var(--ok); }
+.mg__cuerpo { fill: #e9eaed; stroke: #b9bdc4; }
+.mg__ranura { fill: #2a2f36; }
+.mg__palanca { fill: var(--granate); transition: transform 0.35s cubic-bezier(0.3, 1.6, 0.5, 1); }
+.mg__led { fill: #4a4f57; transition: fill 0.3s, filter 0.3s; }
+.mg__txt { fill: #555b64; font: 700 11px var(--titulos); text-anchor: middle; letter-spacing: 0.06em; }
+.dif .mg__txt { fill: #555b64; }
+.mg.on .mg__palanca, .iga.on .mg__palanca { transform: translateY(-28px); }
+.iga.on .mg__palanca { transform: translateY(-20px); }
+.mg.on .mg__led, .iga.on .mg__led, .dif.on .mg__led { fill: var(--ok); filter: drop-shadow(0 0 4px var(--ok)); }
+.mg .mg__txt { fill: rgba(255, 255, 255, 0.55); }
+.mg.on .mg__txt { fill: var(--rosa); }
+
+.cable { fill: none; stroke: var(--granate-vivo); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: var(--trazo, 0); filter: drop-shadow(0 0 4px rgba(200, 16, 63, 0.7)); }
+.cable__corriente { fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round; stroke-dasharray: 0.04 0.96; opacity: 0; }
+.cable__corriente.on { opacity: 1; animation: fluir 1.6s linear infinite; }
+@keyframes fluir { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.nodo__halo { fill: rgba(200, 16, 63, 0.18); opacity: 0; transform-box: fill-box; transform-origin: center; transition: opacity 0.4s; }
+.nodo__disco { fill: #23282f; stroke: rgba(255, 255, 255, 0.14); transition: fill 0.4s, stroke 0.4s; }
+.nodo__icono { color: var(--o-suave); transition: color 0.4s; }
+.nodo.on .nodo__halo { opacity: 1; animation: halo 2s ease-in-out infinite; }
+.nodo.on .nodo__disco { fill: var(--granate); stroke: var(--rosa); }
+.nodo.on .nodo__icono { color: #fff; }
+@keyframes halo { 50% { transform: scale(1.18); opacity: 0.5; } }
+
+.puerta {
+  position: absolute; left: 7.14%; top: 5.77%; width: 46.43%; height: 88.46%;
+  border-radius: 16px; transform-origin: left center; transform: rotateY(calc(var(--puerta, 1) * -108deg));
+  background: linear-gradient(135deg, #3a4048, #23282f 60%, #1b1f24);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 0 0 6px rgba(0, 0, 0, 0.18), 10px 10px 30px rgba(0, 0, 0, 0.35);
+  display: grid; place-items: center; backface-visibility: hidden;
+  opacity: calc(1 - var(--puerta, 1) * 0.9);
+}
+.puerta__aviso { position: absolute; top: 14%; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 4px; font: 700 0.62rem var(--titulos); letter-spacing: 0.12em; text-transform: uppercase; color: #fbbf24; white-space: nowrap; }
+.puerta__aviso span { display: grid; place-items: center; width: 42px; height: 38px; background: #fbbf24; color: #111; font-size: 1.2rem; clip-path: polygon(50% 0, 100% 100%, 0 100%); padding-top: 10px; }
+.puerta__rayo { width: 34%; opacity: 0.16; }
+.puerta__tirador { position: absolute; right: 8%; top: 46%; width: 10px; height: 46px; border-radius: 6px; background: #c3c6cc; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); }
+
+.historia__pasos { display: grid; }
+.paso {
+  display: block; min-height: 70vh; padding: 28px 0 28px 26px; position: relative;
+  border-left: 2px solid var(--borde); color: inherit; text-decoration: none;
+  opacity: 0.35; transition: opacity 0.5s, border-color 0.5s;
+}
+.paso::before { content: ""; position: absolute; left: -7px; top: 36px; width: 12px; height: 12px; border-radius: 50%; background: var(--borde); transition: background 0.4s, box-shadow 0.4s; }
+.paso.activo { opacity: 1; border-color: var(--granate); }
+.paso.activo::before { background: var(--granate-vivo); box-shadow: 0 0 0 5px rgba(200, 16, 63, 0.18), 0 0 16px var(--granate-vivo); }
+.paso__num { font-family: var(--titulos); font-weight: 600; font-size: 0.8rem; letter-spacing: 0.14em; color: var(--granate); }
+.paso h3 { font-size: clamp(1.7rem, 3.2vw, 2.6rem); margin: 14px 0 12px; }
+.paso p { font-size: 1.1rem; color: var(--texto-suave); max-width: 46ch; }
+.paso p svg { display: inline; width: 1em; height: 1em; vertical-align: -0.12em; }
+.paso__etiquetas { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 22px; padding: 0; list-style: none; }
+.paso__etiquetas li { font-size: 0.82rem; padding: 5px 12px; border-radius: 999px; background: var(--blanco); border: 1px solid var(--borde); color: var(--gris-oscuro); }
+.paso__enlace { display: inline-flex; align-items: center; gap: 8px; font-family: var(--titulos); font-weight: 600; text-decoration: none; }
+.paso__enlace svg { width: 18px; height: 18px; transition: transform 0.25s; }
+.paso__enlace:hover svg { transform: translateX(4px); }
+.paso--extra { min-height: 0; padding-bottom: 8px; }
+.paso--extra:hover h3 { color: var(--granate); }
+@media (max-width: 899px) { .paso { min-height: 56vh; } .paso:first-child { padding-top: 10px; } }
+
+/* Estado "todo encendido": sin JavaScript o con "reducir movimiento" */
+.historia:not(.animada) .mg .mg__palanca, .historia:not(.animada) .iga .mg__palanca { transform: translateY(-28px); }
+.historia:not(.animada) .iga .mg__palanca { transform: translateY(-20px); }
+.historia:not(.animada) .mg__led { fill: var(--ok); }
+.historia:not(.animada) .nodo__disco { fill: var(--granate); stroke: var(--rosa); }
+.historia:not(.animada) .nodo__icono { color: #fff; }
+.historia:not(.animada) .paso { opacity: 1; }
+.historia:not(.animada) .puerta { display: none; }
+.historia:not(.animada) .cuadro__estado { fill: var(--ok); }
+.historia:not(.animada) .historia__escena { position: relative; top: 0; }
+.historia:not(.animada) .paso { min-height: 0; }
+
+/* ---------- Frase que se ilumina palabra a palabra ---------- */
+.frase {
+  font-family: var(--titulos); font-weight: 600; letter-spacing: -0.02em; line-height: 1.18;
+  font-size: clamp(1.8rem, 4.4vw, 3.4rem); color: var(--blanco); max-width: 22ch; margin: 0 0 clamp(48px, 7vw, 80px);
+}
+.frase .pal { color: rgba(255, 255, 255, 0.16); transition: color 0.25s, text-shadow 0.25s; }
+.frase .pal.luz { color: var(--blanco); }
+.frase .pal.luz.ultima { color: var(--rosa); text-shadow: 0 0 22px rgba(255, 159, 182, 0.7); }
 
 /* ---------- Trabajos ---------- */
 .trabajos { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
@@ -431,10 +540,11 @@ a:hover { color: var(--granate-oscuro); }
     linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px) 0 0 / 32px 32px,
     linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px) 0 0 / 32px 32px,
     var(--grafito);
-  transition: transform 0.6s;
+  transition: transform 0.2s ease-out;
 }
 .trabajo__foto svg { width: 38px; height: 38px; margin: 0 auto 8px; color: var(--o-suave); }
-.trabajo:hover .trabajo__foto { transform: scale(1.04); }
+.trabajo__foto { transform: translateY(var(--paralaje, 0px)) scale(1.12); }
+.trabajo:hover .trabajo__foto { transform: translateY(var(--paralaje, 0px)) scale(1.16); }
 .trabajo figcaption {
   position: absolute; left: 0; right: 0; bottom: 0; padding: 22px;
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));

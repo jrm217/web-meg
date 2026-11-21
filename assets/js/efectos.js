@@ -301,7 +301,7 @@
      --------------------------------------------------------------------- */
   function apariciones() {
     if (reducir || !("IntersectionObserver" in window)) return;
-    var selector = ".seccion__cabeza, .servicio-tarjeta, .tarjeta, .ventaja, .trabajo, .proceso li, .faq details, .cta, .bloque__titulo, .items, .zona-mapa, .pie__grande";
+    var selector = ".seccion__cabeza, .servicio-tarjeta, .tarjeta, .ventaja, .trabajo, .faq details, .cta, .bloque__titulo, .items, .zona-mapa, .pie__grande";
     var elementos = document.querySelectorAll(selector);
     var obs = new IntersectionObserver(function (entradas) {
       entradas.forEach(function (en) {
@@ -340,10 +340,134 @@
     revisar();
   }
 
+
+  /* ---------------------------------------------------------------------
+     5. Animaciones ligadas al scroll
+        - Servicios: el cuadro se abre y se enciende circuito a circuito
+        - Frase de "Por qué MEG" que se ilumina palabra a palabra
+        - Línea de corriente del proceso
+        - Paralaje suave en las fotos de trabajos
+     --------------------------------------------------------------------- */
+  function limitar(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+
+  function animacionesScroll() {
+    if (reducir) return;
+    var tareas = [];
+
+    // 5a. Cuadro eléctrico
+    var hist = document.querySelector(".historia");
+    if (hist) {
+      hist.classList.add("animada");
+      var escena = hist.querySelector(".escena");
+      var pasos = hist.querySelectorAll(".paso[data-i]");
+      var mgs = hist.querySelectorAll(".mg");
+      var cables = hist.querySelectorAll(".cable");
+      var corrientes = hist.querySelectorAll(".cable__corriente");
+      var nodosSvg = hist.querySelectorAll(".nodo");
+      var iga = hist.querySelector(".iga"), dif = hist.querySelector(".dif");
+      var contador = hist.querySelector("[data-circuitos]");
+      var contenedorPasos = hist.querySelector(".historia__pasos");
+      var anterior = -1;
+      tareas.push(function (vh) {
+        var r = contenedorPasos.getBoundingClientRect();
+        // La puerta se abre al entrar la sección
+        var puerta = limitar((vh * 0.62 - r.top) / (vh * 0.3));
+        escena.style.setProperty("--puerta", puerta.toFixed(3));
+        var general = puerta > 0.95;
+        iga.classList.toggle("on", general);
+        dif.classList.toggle("on", general);
+        var encendidos = 0;
+        pasos.forEach(function (art, i) {
+          var a = art.getBoundingClientRect();
+          var t = limitar((vh * 0.62 - a.top) / (a.height * 0.55));
+          if (!general) t = 0;
+          cables[i].style.setProperty("--trazo", (1 - t).toFixed(3));
+          var on = t > 0.12, lleno = t > 0.97;
+          mgs[i].classList.toggle("on", on);
+          corrientes[i].classList.toggle("on", lleno);
+          nodosSvg[i].classList.toggle("on", lleno);
+          if (lleno) encendidos++;
+          art.classList.toggle("activo", a.top < vh * 0.62 && a.bottom > vh * 0.3);
+        });
+        var extra = hist.querySelector(".paso--extra");
+        if (extra) { var e = extra.getBoundingClientRect(); extra.classList.toggle("activo", e.top < vh * 0.7); }
+        if (encendidos !== anterior) {
+          anterior = encendidos;
+          contador.textContent = encendidos;
+          escena.style.setProperty("--carga", (encendidos / 4).toFixed(2));
+          hist.classList.toggle("en-servicio", encendidos > 0);
+          var estado = hist.querySelector(".cuadro__estado");
+          if (estado) estado.textContent = encendidos === 4 ? "TODO EN SERVICIO" : encendidos > 0 ? "EN SERVICIO" : general ? "LISTO" : "SIN TENSIÓN";
+        }
+      });
+    }
+
+    // 5b. Frase palabra a palabra
+    document.querySelectorAll("[data-frase]").forEach(function (frase) {
+      var palabras = frase.textContent.trim().split(/\s+/);
+      frase.setAttribute("aria-label", frase.textContent.trim());
+      frase.innerHTML = palabras.map(function (p) { return '<span class="pal" aria-hidden="true">' + p + "</span>"; }).join(" ");
+      var spans = frase.querySelectorAll(".pal");
+      var ultimo = -1;
+      tareas.push(function (vh) {
+        var r = frase.getBoundingClientRect();
+        var p = limitar((vh * 0.88 - r.top) / (vh * 0.55));
+        var n = Math.round(p * spans.length);
+        if (n === ultimo) return;
+        ultimo = n;
+        spans.forEach(function (s, i) {
+          s.classList.toggle("luz", i < n);
+          s.classList.toggle("ultima", i === n - 1 && n < spans.length);
+        });
+      });
+    });
+
+    // 5c. Línea del proceso
+    document.querySelectorAll(".proceso").forEach(function (lista) {
+      var items = lista.querySelectorAll("li");
+      tareas.push(function (vh) {
+        var r = lista.getBoundingClientRect();
+        var horizontal = window.innerWidth >= 900;
+        var p = horizontal
+          ? limitar((vh * 0.85 - r.top) / (vh * 0.45))
+          : limitar((vh * 0.7 - r.top) / r.height);
+        lista.style.setProperty("--avance", p.toFixed(3));
+        items.forEach(function (li, i) {
+          var umbral = items.length > 1 ? i / (items.length - 1) : 0;
+          li.classList.toggle("encendido", p >= umbral - 0.02);
+        });
+      });
+    });
+
+    // 5d. Paralaje de las fotos
+    document.querySelectorAll(".trabajo").forEach(function (fig) {
+      var foto = fig.querySelector(".trabajo__foto");
+      tareas.push(function (vh) {
+        var r = fig.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > vh) return;
+        var p = (r.top + r.height / 2 - vh / 2) / vh;
+        foto.style.setProperty("--paralaje", (p * -40).toFixed(1) + "px");
+      });
+    });
+
+    if (!tareas.length) return;
+    var pendiente = false;
+    function actualizar() {
+      pendiente = false;
+      var vh = window.innerHeight;
+      for (var i = 0; i < tareas.length; i++) tareas[i](vh);
+    }
+    function pedir() { if (!pendiente) { pendiente = true; requestAnimationFrame(actualizar); } }
+    window.addEventListener("scroll", pedir, { passive: true });
+    window.addEventListener("resize", pedir);
+    actualizar();
+  }
+
   if (document.createElement("canvas").getContext) {
     document.querySelectorAll(".portada, .cabecera-pagina").forEach(redElectrica);
   }
   brilloTarjetas();
   apariciones();
   cabecera();
+  animacionesScroll();
 })();
