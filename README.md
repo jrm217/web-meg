@@ -74,3 +74,16 @@ Mientras no esté la clave, el formulario avisa al cliente de que llame o escrib
 ## Privacidad
 
 La web no usa cookies, ni Google Fonts, ni analítica: por eso no necesita aviso de cookies. Los mapas son enlaces a Google Maps, no mapas incrustados.
+
+## Imágenes de los circuitos (sección Servicios)
+
+Cada circuito del cuadro tiene su imagen en `assets/img/servicios/`:
+
+| Circuito | Archivo |
+|---|---|
+| C1 Instalaciones eléctricas | `c1-instalaciones.svg` |
+| C2 Centros de transformación | `c2-centros-transformacion.svg` |
+| C3 Placas solares | `c3-placas-solares.svg` |
+| C4 Puntos de carga | `c4-puntos-de-carga.svg` |
+
+Son ilustraciones provisionales. Para poner fotos reales de trabajos, guarda la foto (horizontal, unos 1600 × 1000 px, en `.jpg` o `.webp`) en esa carpeta y cambia el `src` de la imagen correspondiente en `index.html` (busca `assets/img/servicios/`). Actualiza también el texto `alt` para describir la foto.

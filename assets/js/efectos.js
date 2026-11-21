@@ -386,7 +386,8 @@
           mgs[i].classList.toggle("on", on);
           corrientes[i].classList.toggle("on", lleno);
           nodosSvg[i].classList.toggle("on", lleno);
-          if (lleno) encendidos++;
+          if (on) encendidos++;
+          art.classList.toggle("on", on);
           art.classList.toggle("activo", a.top < vh * 0.62 && a.bottom > vh * 0.3);
         });
         var extra = hist.querySelector(".paso--extra");
