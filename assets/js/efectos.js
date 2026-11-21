@@ -526,6 +526,40 @@
       });
     });
 
+    // 5i. Instalaciones: el edificio se enciende planta a planta
+    document.querySelectorAll(".obra").forEach(function (sec) {
+      sec.classList.add("animada");
+      var escena = sec.querySelector(".flujo__escena");
+      var pasos = sec.querySelectorAll(".fpaso");
+      var lineas = sec.querySelectorAll(".obra__linea");
+      var corrientes = sec.querySelectorAll(".obra__corriente");
+      var plantas = sec.querySelectorAll(".obra__planta");
+      var n = pasos.length;
+      var mq = window.matchMedia("(max-width: 899px)");
+      tareas.push(function (vh) {
+        var t = [];
+        if (mq.matches) {
+          var r = escena.getBoundingClientRect();
+          var p = limitar((vh * 0.92 - r.top) / (vh * 0.75));
+          for (var k = 0; k < n; k++) t.push(limitar(p * n - k));
+          pasos.forEach(function (art) { art.classList.remove("activo"); });
+        } else {
+          pasos.forEach(function (art) {
+            var a = art.getBoundingClientRect();
+            t.push(limitar((vh * 0.65 - a.top) / (a.height * 0.5)));
+            art.classList.toggle("activo", a.top < vh * 0.65 && a.bottom > vh * 0.3);
+          });
+        }
+        for (var i = 0; i < n; i++) sec.classList.toggle("f" + i, t[i] > 0.6);
+        lineas.forEach(function (l, i) {
+          var tp = t[+l.getAttribute("data-paso")] || 0;
+          l.style.setProperty("--trazo", (1 - tp).toFixed(3));
+          corrientes[i].classList.toggle("on", tp > 0.97);
+        });
+        plantas.forEach(function (g) { g.classList.toggle("on", t[+g.getAttribute("data-paso")] > 0.85); });
+      });
+    });
+
     // 5h. Puntos de carga: el cargador se llena al bajar
     document.querySelectorAll(".carga").forEach(function (sec) {
       sec.classList.add("animada");
@@ -564,6 +598,91 @@
     actualizar();
   }
 
+  // 6. Instalaciones: cuadro interactivo (general, diferenciales, térmicos y reloj)
+  function cuadroVivo() {
+    document.querySelectorAll("[data-cuadro-vivo]").forEach(function (caja) {
+      var aparatos = {};
+      caja.querySelectorAll("[data-cv]").forEach(function (el) {
+        aparatos[el.getAttribute("data-cv")] = {
+          el: el, boton: el.querySelector(".cv__ranura"), padre: el.getAttribute("data-padre"),
+          kw: parseFloat(el.getAttribute("data-kw") || "0"), nombre: el.querySelector(".cv__nombre").textContent, arriba: true
+        };
+      });
+      var reloj = caja.querySelector("[data-cv-reloj]");
+      var hora = caja.querySelector("[data-cv-hora]");
+      var modoTxt = caja.querySelector("[data-cv-modo]");
+      var estado = caja.querySelector("[data-cv-estado]");
+      var kwTxt = caja.querySelector("[data-cv-kw]");
+      var rearmar = caja.querySelector("[data-cv-rearmar]");
+      var modos = ["AUTO", "ENCENDIDO", "APAGADO"], modo = 0;
+
+      function tension(id) {
+        var a = aparatos[id];
+        if (!a || !a.arriba) return false;
+        return a.padre ? tension(a.padre) : true;
+      }
+      function relojDaPaso() {
+        if (modo === 1) return true;
+        if (modo === 2) return false;
+        var h = new Date().getHours();
+        return h >= 20 || h < 7;
+      }
+      function pintar() {
+        var kw = 0, cortados = [];
+        Object.keys(aparatos).forEach(function (id) {
+          var a = aparatos[id], on = tension(id);
+          a.el.classList.toggle("on", on);
+          a.boton.setAttribute("aria-pressed", a.arriba ? "true" : "false");
+          var salida = caja.querySelector('[data-salida="' + id + '"]');
+          if (salida) {
+            var luz = on && (id !== "c6" || relojDaPaso());
+            salida.classList.toggle("on", luz);
+            if (luz) kw += a.kw;
+            if (!on) cortados.push(salida.textContent);
+          }
+        });
+        caja.querySelectorAll("[data-peine]").forEach(function (p) { p.classList.toggle("on", tension(p.getAttribute("data-peine"))); });
+        var general = tension("iga");
+        if (reloj) reloj.classList.toggle("on", general);
+        kwTxt.textContent = kw.toFixed(1).replace(".", ",");
+        caja.classList.toggle("sin-luz", !general);
+        caja.classList.toggle("aviso", general && cortados.length > 0);
+        estado.textContent = !general ? "Sin luz: el general está bajado"
+          : cortados.length ? "Sin tensión: " + cortados.join(", ")
+          : "Todo en servicio";
+        var todoArriba = Object.keys(aparatos).every(function (id) { return aparatos[id].arriba; });
+        rearmar.hidden = todoArriba;
+      }
+      function sacudir(el) {
+        el.classList.remove("disparo"); void el.offsetWidth; el.classList.add("disparo");
+      }
+      Object.keys(aparatos).forEach(function (id) {
+        var a = aparatos[id];
+        a.boton.addEventListener("click", function () { a.arriba = !a.arriba; pintar(); });
+      });
+      caja.querySelectorAll("[data-cv-test]").forEach(function (b) {
+        b.addEventListener("click", function () {
+          var a = aparatos[b.getAttribute("data-cv-test")];
+          if (!tension(b.getAttribute("data-cv-test"))) return;
+          a.arriba = false; sacudir(a.el); pintar();
+        });
+      });
+      caja.querySelector("[data-cv-modo-btn]").addEventListener("click", function () {
+        modo = (modo + 1) % modos.length; modoTxt.textContent = modos[modo]; pintar();
+      });
+      rearmar.addEventListener("click", function () {
+        Object.keys(aparatos).forEach(function (id) { aparatos[id].arriba = true; }); pintar();
+      });
+      function tic() {
+        var d = new Date();
+        hora.textContent = ("0" + d.getHours()).slice(-2) + (d.getSeconds() % 2 ? " " : ":") + ("0" + d.getMinutes()).slice(-2);
+        if (d.getSeconds() === 0) pintar();
+      }
+      tic(); pintar();
+      setInterval(tic, 1000);
+    });
+  }
+
   if (document.createElement("canvas").getContext) {
     document.querySelectorAll(".portada, .cabecera-pagina").forEach(redElectrica);
   }
@@ -571,4 +690,5 @@
   apariciones();
   cabecera();
   animacionesScroll();
+  cuadroVivo();
 })();
