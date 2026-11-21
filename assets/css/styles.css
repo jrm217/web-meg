@@ -608,6 +608,13 @@ a:hover { color: var(--granate-oscuro); }
 .zona-mapa__punto::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--rosa); }
 .zona { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 24px 0 30px; list-style: none; }
 .zona li { border: 1px solid var(--o-borde); background: var(--o-panel); border-radius: 999px; padding: 6px 14px; font-size: 0.9rem; color: var(--o-texto); }
+.zona { margin: 10px 0 22px; }
+.zona__titulo { margin: 22px 0 0; font-family: var(--titulos); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rosa); }
+.zona--lejos li { border-style: dashed; color: var(--o-suave); }
+.zona--lejos + .boton { margin-top: 8px; }
+.zona-mapa__punto--lejos { color: var(--o-suave); font-size: 0.72rem; }
+.zona-mapa__punto--lejos::before { background: transparent; border: 1.5px solid var(--rosa); width: 6px; height: 6px; }
+.zona-mapa__anillo { position: absolute; top: 1.5%; left: 50%; transform: translateX(-50%); font-family: var(--titulos); font-size: 0.66rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255, 159, 182, 0.55); }
 
 /* ---------- Llamada final ---------- */
 .cta {
