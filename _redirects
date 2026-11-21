@@ -1,14 +1,11 @@
-# Redirecciones desde las direcciones de la web antigua (funciona en Netlify y Cloudflare Pages).
-# Así no se pierden las visitas que llegan desde Google a las páginas viejas.
-/instalaciones-electricas                 /instalaciones-electricas.html   301
-/instalaciones-electricas/                /instalaciones-electricas.html   301
-/placas-solares                           /placas-solares.html             301
-/placas-solares/                          /placas-solares.html             301
-/puntos-de-carga-para-coches-electricos   /puntos-de-carga.html            301
-/puntos-de-carga-para-coches-electricos/  /puntos-de-carga.html            301
-/contacto                                 /contacto.html                   301
-/contacto/                                /contacto.html                   301
-/politica-privacidad/                     /privacidad.html                 301
-/aviso-legal/                             /aviso-legal.html                301
-/politica-de-cookies/                     /cookies.html                    301
-/blog/*                                   /                                301
+# Redirecciones desde las direcciones de la web antigua (Cloudflare Pages / Netlify).
+# Solo las que cambian de nombre: Cloudflare ya quita el ".html" y la barra final
+# por su cuenta, y una regla como "/placas-solares -> /placas-solares.html" crea un bucle.
+/puntos-de-carga-para-coches-electricos    /puntos-de-carga    301
+/puntos-de-carga-para-coches-electricos/   /puntos-de-carga    301
+/politica-privacidad                       /privacidad         301
+/politica-privacidad/                      /privacidad         301
+/politica-de-cookies                       /cookies            301
+/politica-de-cookies/                      /cookies            301
+/blog                                      /                   301
+/blog/*                                    /                   301
