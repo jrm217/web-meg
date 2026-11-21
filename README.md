@@ -25,6 +25,7 @@ Abre `index.html` con el navegador. No hace falta instalar nada.
 | `404.html` | Página de error |
 | `assets/css/styles.css` | Estilos. Los colores están arriba del todo (`--granate`, etc.) |
 | `assets/js/main.js` | Menú del móvil y envío del formulario |
+| `assets/js/efectos.js` | Efectos: red eléctrica animada en la portada, brillo en tarjetas y apariciones al bajar. Para quitarlos, borra la línea `efectos.js` de los `.html` |
 | `assets/img/logo.svg` | **Logo provisional** (ver abajo) |
 | `assets/img/trabajos/` | Carpeta para las fotos de trabajos |
 | `sitemap.xml`, `robots.txt` | Para Google |
