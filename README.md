@@ -24,7 +24,8 @@ Abre `index.html` con el navegador. No hace falta instalar nada.
 | `aviso-legal.html`, `privacidad.html`, `cookies.html` | Textos legales |
 | `404.html` | Página de error |
 | `assets/css/styles.css` | Estilos. Los colores están arriba del todo (`--granate`, etc.) |
-| `assets/js/main.js` | Menú del móvil y envío del formulario |
+| `assets/fonts/` | Tipografías Space Grotesk (títulos) e Inter (texto), alojadas en la propia web (licencia libre OFL) |
+| `assets/js/main.js` | Menú del móvil, envío del formulario y aviso de "Abierto ahora / Cerrado" según el horario |
 | `assets/js/efectos.js` | Efectos: red eléctrica animada en la portada, brillo en tarjetas y apariciones al bajar. Para quitarlos, borra la línea `efectos.js` de los `.html` |
 | `assets/img/logo.svg` | **Logo provisional** (ver abajo) |
 | `assets/img/trabajos/` | Carpeta para las fotos de trabajos |

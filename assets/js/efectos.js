@@ -277,9 +277,9 @@
      --------------------------------------------------------------------- */
   function brilloTarjetas() {
     if (!punteroFino) return;
-    document.querySelectorAll(".tarjeta, .trabajo").forEach(function (el) {
+    document.querySelectorAll(".servicio-tarjeta, .tarjeta, .canal").forEach(function (el) {
       el.classList.add("con-brillo");
-      var inclinar = !reducir && el.classList.contains("tarjeta--enlace");
+      var inclinar = !reducir && el.classList.contains("servicio-tarjeta");
       el.addEventListener("pointermove", function (e) {
         var r = el.getBoundingClientRect();
         var x = e.clientX - r.left, y = e.clientY - r.top;
@@ -301,7 +301,7 @@
      --------------------------------------------------------------------- */
   function apariciones() {
     if (reducir || !("IntersectionObserver" in window)) return;
-    var selector = ".seccion__cabeza, .tarjeta, .valor, .trabajo, .pasos li, .faq details, .cta, .servicio, .zona li, .contacto-datos li";
+    var selector = ".seccion__cabeza, .servicio-tarjeta, .tarjeta, .ventaja, .trabajo, .proceso li, .faq details, .cta, .bloque__titulo, .items, .zona-mapa, .pie__grande";
     var elementos = document.querySelectorAll(selector);
     var obs = new IntersectionObserver(function (entradas) {
       entradas.forEach(function (en) {
