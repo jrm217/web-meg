@@ -1,0 +1,14 @@
+# Redirecciones desde las direcciones de la web antigua (funciona en Netlify y Cloudflare Pages).
+# Así no se pierden las visitas que llegan desde Google a las páginas viejas.
+/instalaciones-electricas                 /instalaciones-electricas.html   301
+/instalaciones-electricas/                /instalaciones-electricas.html   301
+/placas-solares                           /placas-solares.html             301
+/placas-solares/                          /placas-solares.html             301
+/puntos-de-carga-para-coches-electricos   /puntos-de-carga.html            301
+/puntos-de-carga-para-coches-electricos/  /puntos-de-carga.html            301
+/contacto                                 /contacto.html                   301
+/contacto/                                /contacto.html                   301
+/politica-privacidad/                     /privacidad.html                 301
+/aviso-legal/                             /aviso-legal.html                301
+/politica-de-cookies/                     /cookies.html                    301
+/blog/*                                   /                                301

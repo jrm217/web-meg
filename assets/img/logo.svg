@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="M.E.G Montajes Eléctricos Garrido">
+  <!-- LOGO PROVISIONAL. Sustituye este archivo por el logo original (mismo nombre: logo.svg, o cambia la ruta en el HTML a logo.png). -->
+  <rect width="120" height="120" rx="10" fill="#9a0026"/>
+  <path d="M68 12 34 66h22l-8 42 38-58H64z" fill="#fff"/>
+  <text x="60" y="114" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#fff" letter-spacing="1">M.E.G</text>
+</svg>
