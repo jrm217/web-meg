@@ -1063,3 +1063,6 @@ a.canal:hover { transform: translateY(-4px); border-color: rgba(154, 0, 38, 0.35
 .cabecera-pagina .cvivo__pista { margin: 10px 0 0; font-size: 0.82rem; line-height: 1.5; color: var(--texto-suave); }
 .cv__ranura { height: 46px; } .cv__palanca { height: 20px; transform: translateY(20px); }
 .cvivo__peine { margin: 8px 0 10px; }
+/* Sin tensión aguas arriba: la palanca sigue arriba pero en gris */
+.cv:not(.on) .cv__ranura[aria-pressed="true"] .cv__palanca { background: linear-gradient(180deg, #4a5059, #33373d); }
+.cv:not(.on) { filter: saturate(0.6) brightness(0.92); }
