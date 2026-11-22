@@ -1067,11 +1067,13 @@ a.canal:hover { transform: translateY(-4px); border-color: rgba(154, 0, 38, 0.35
 .cv:not(.on) .cv__ranura[aria-pressed="true"] .cv__palanca { background: linear-gradient(180deg, #4a5059, #33373d); }
 .cv:not(.on) { filter: saturate(0.6) brightness(0.92); }
 
-/* Sello Epyme / Empresa Instaladora Certificada */
+/* Sellos Epyme / Empresa Instaladora Certificada */
 .sellos { display: flex; flex-wrap: wrap; align-items: center; gap: 20px 28px; margin-top: clamp(36px, 5vw, 56px); padding: 22px 26px; border-radius: 18px; background: var(--superficie); border: 1px solid var(--borde); }
 .sellos p { margin: 0; flex: 1 1 260px; color: var(--texto); }
 .sellos strong { color: var(--tinta); }
-.sello { display: inline-flex; padding: 10px 14px; border-radius: 10px; background: #fff; }
-.sello img { display: block; width: 230px; max-width: 100%; height: auto; }
-.sello--pie { margin-top: 20px; }
-.sello--pie img { width: 200px; }
+.sello { display: inline-flex; align-items: center; gap: 16px; padding: 12px 18px; border-radius: 12px; background: #fff; max-width: 100%; }
+.sello img { display: block; height: 46px; width: auto; min-width: 0; flex: 0 1 auto; object-fit: contain; }
+.sello i { align-self: stretch; width: 1px; background: #d6d8dc; }
+.sello--pie { margin-top: 20px; gap: 12px; padding: 10px 14px; }
+.sello--pie img { height: 36px; }
+@media (max-width: 420px) { .sello img { height: 38px; } .sello--pie img { height: 32px; } }
