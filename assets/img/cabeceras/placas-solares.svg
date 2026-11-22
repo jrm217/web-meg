@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <style>
+    .sol { transform-origin: 400px 600px; animation: sol 16s linear infinite; }
+    @keyframes sol { 0% { transform: rotate(-58deg); opacity: 0; } 7% { opacity: 1; } 93% { opacity: 1; } 100% { transform: rotate(58deg); opacity: 0; } }
+    .dia { animation: dia 16s linear infinite; opacity: 0; }
+    @keyframes dia { 0%, 4% { opacity: 0; } 50% { opacity: 1; } 96%, 100% { opacity: 0; } }
+    .brillo { animation: brillo 4s ease-in-out infinite; }
+    @keyframes brillo { 0% { transform: translateX(-420px); } 60%, 100% { transform: translateX(520px); } }
+    .curva { stroke-dasharray: 1; stroke-dashoffset: 1; animation: curva 16s linear infinite; }
+    @keyframes curva { 0%, 4% { stroke-dashoffset: 1; } 96% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+    .area { animation: dia 16s linear infinite; }
+    .cable { stroke-dasharray: 5 11; animation: fluir .9s linear infinite; }
+    @keyframes fluir { to { stroke-dashoffset: -16; } }
+    .led { animation: led 1.6s ease-in-out infinite; }
+    @keyframes led { 50% { opacity: .35; } }
+    .nivel { transform-origin: 0 404px; transform-box: view-box; animation: nivel 16s ease-in-out infinite; }
+    @keyframes nivel { 0%, 10% { transform: scaleY(.2); } 85%, 100% { transform: scaleY(1); } }
+    @media (prefers-reduced-motion: reduce) {
+      .sol, .dia, .brillo, .curva, .area, .cable, .led, .nivel { animation: none; }
+      .sol { transform: none; } .dia, .area { opacity: 1; } .curva { stroke-dashoffset: 0; } .brillo { display: none; }
+    }
+  </style>
+  <defs>
+    <linearGradient id="ps-cielo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#14181d"/><stop offset="1" stop-color="#3a1220"/></linearGradient>
+    <linearGradient id="ps-dia" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f3350"/><stop offset=".7" stop-color="#6b3a3f"/><stop offset="1" stop-color="#c0704a"/></linearGradient>
+    <radialGradient id="ps-sol" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff1cf"/><stop offset=".35" stop-color="#ffc35c" stop-opacity=".75"/><stop offset="1" stop-color="#ffc35c" stop-opacity="0"/></radialGradient>
+    <linearGradient id="ps-panel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#34507a"/><stop offset="1" stop-color="#14203a"/></linearGradient>
+    <linearGradient id="ps-luz" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <linearGradient id="ps-area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffc35c" stop-opacity=".45"/><stop offset="1" stop-color="#ffc35c" stop-opacity="0"/></linearGradient>
+    <clipPath id="ps-placas"><path d="M253.4 217.1 L296.2 217.1 L273.8 262.9 L221.6 262.9Z"/><path d="M303.5 217.1 L346.3 217.1 L334.7 262.9 L282.5 262.9Z"/><path d="M353.5 217.1 L396.4 217.1 L395.6 262.9 L343.5 262.9Z"/><path d="M403.6 217.1 L446.5 217.1 L456.5 262.9 L404.4 262.9Z"/><path d="M453.7 217.1 L496.5 217.1 L517.5 262.9 L465.3 262.9Z"/><path d="M503.8 217.1 L546.6 217.1 L578.4 262.9 L526.2 262.9Z"/><path d="M217.3 269.1 L270.7 269.1 L248.2 314.9 L185.5 314.9Z"/><path d="M279.7 269.1 L333.1 269.1 L321.5 314.9 L258.8 314.9Z"/><path d="M342.1 269.1 L395.5 269.1 L394.7 314.9 L332.0 314.9Z"/><path d="M404.5 269.1 L457.9 269.1 L468.0 314.9 L405.3 314.9Z"/><path d="M466.9 269.1 L520.3 269.1 L541.2 314.9 L478.5 314.9Z"/><path d="M529.3 269.1 L582.7 269.1 L614.5 314.9 L551.8 314.9Z"/></clipPath>
+    <clipPath id="ps-grafica"><rect x="604" y="62" width="160" height="62"/></clipPath>
+  </defs>
+  <rect width="800" height="500" fill="url(#ps-cielo)"/>
+  <rect class="dia" width="800" height="500" fill="url(#ps-dia)"/>
+  <g fill="#fff" opacity=".35"><circle cx="60" cy="40" r="1.3"/><circle cx="210" cy="70" r="1"/><circle cx="520" cy="30" r="1.2"/><circle cx="330" cy="110" r="1"/><circle cx="740" cy="200" r="1"/></g>
+
+  <!-- sol recorriendo el cielo -->
+  <g class="sol"><circle cx="400" cy="150" r="80" fill="url(#ps-sol)"/><circle cx="400" cy="150" r="26" fill="#fff1cf"/></g>
+
+  <!-- colinas -->
+  <path d="M0 380 Q 140 330 300 372 T 620 360 T 800 350 V 500 H 0 Z" fill="#1c2027"/>
+  <path d="M0 440 H 800 V 500 H 0 Z" fill="#0f1215"/>
+
+  <!-- casa -->
+  <rect x="170" y="318" width="460" height="122" fill="#23282f"/>
+  <path d="M232 200 H 568 L 650 324 H 150 Z" fill="#9a0026"/>
+  <path d="M150 324 H 650" stroke="#c8103f" stroke-width="6" stroke-linecap="round"/>
+  <path d="M232 200 H 568" stroke="#74001d" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- placas -->
+  <g fill="url(#ps-panel)" stroke="#c3c6cc" stroke-width="1.6" stroke-linejoin="round"><path d="M253.4 217.1 L296.2 217.1 L273.8 262.9 L221.6 262.9Z"/><path d="M303.5 217.1 L346.3 217.1 L334.7 262.9 L282.5 262.9Z"/><path d="M353.5 217.1 L396.4 217.1 L395.6 262.9 L343.5 262.9Z"/><path d="M403.6 217.1 L446.5 217.1 L456.5 262.9 L404.4 262.9Z"/><path d="M453.7 217.1 L496.5 217.1 L517.5 262.9 L465.3 262.9Z"/><path d="M503.8 217.1 L546.6 217.1 L578.4 262.9 L526.2 262.9Z"/><path d="M217.3 269.1 L270.7 269.1 L248.2 314.9 L185.5 314.9Z"/><path d="M279.7 269.1 L333.1 269.1 L321.5 314.9 L258.8 314.9Z"/><path d="M342.1 269.1 L395.5 269.1 L394.7 314.9 L332.0 314.9Z"/><path d="M404.5 269.1 L457.9 269.1 L468.0 314.9 L405.3 314.9Z"/><path d="M466.9 269.1 L520.3 269.1 L541.2 314.9 L478.5 314.9Z"/><path d="M529.3 269.1 L582.7 269.1 L614.5 314.9 L551.8 314.9Z"/></g>
+  <path d="M267.7 217.1 L239.0 262.9 M282.0 217.1 L256.4 262.9 M237.5 240.0 L285.0 240.0 M317.7 217.1 L299.9 262.9 M332.0 217.1 L317.3 262.9 M293.0 240.0 L340.5 240.0 M367.8 217.1 L360.8 262.9 M382.1 217.1 L378.2 262.9 M348.5 240.0 L396.0 240.0 M417.9 217.1 L421.8 262.9 M432.2 217.1 L439.2 262.9 M404.0 240.0 L451.5 240.0 M468.0 217.1 L482.7 262.9 M482.3 217.1 L500.1 262.9 M459.5 240.0 L507.0 240.0 M518.0 217.1 L543.6 262.9 M532.3 217.1 L561.0 262.9 M515.0 240.0 L562.5 240.0 M235.1 269.1 L206.4 314.9 M252.9 269.1 L227.3 314.9 M201.4 292.0 L259.4 292.0 M297.5 269.1 L279.7 314.9 M315.3 269.1 L300.6 314.9 M269.2 292.0 L327.3 292.0 M359.9 269.1 L352.9 314.9 M377.7 269.1 L373.8 314.9 M337.1 292.0 L395.1 292.0 M422.3 269.1 L426.2 314.9 M440.1 269.1 L447.1 314.9 M404.9 292.0 L462.9 292.0 M484.7 269.1 L499.4 314.9 M502.5 269.1 L520.3 314.9 M472.7 292.0 L530.8 292.0 M547.1 269.1 L572.7 314.9 M564.9 269.1 L593.6 314.9 M540.6 292.0 L598.6 292.0" stroke="rgba(195,198,204,.35)" stroke-width="1"/>
+  <g clip-path="url(#ps-placas)">
+    <rect class="dia" x="150" y="200" width="500" height="130" fill="#ffc35c" fill-opacity=".2"/>
+    <path class="brillo" d="M150 200 h60 l-70 130 h-60 Z" fill="url(#ps-luz)"/>
+  </g>
+  <g stroke="#5a6069" stroke-width="3"><path d="M196 318 v8 M604 318 v8"/></g>
+
+  <!-- fachada -->
+  <rect x="200" y="352" width="56" height="44" rx="3" fill="#121519"/><rect x="204" y="356" width="48" height="36" rx="2" fill="#ffd27a" opacity=".75"/>
+  <rect x="290" y="352" width="56" height="44" rx="3" fill="#121519"/><rect x="294" y="356" width="48" height="36" rx="2" fill="#ffd27a" opacity=".6"/>
+  <rect x="380" y="370" width="40" height="70" rx="3" fill="#33373d"/><circle cx="412" cy="406" r="2.5" fill="#8b9099"/>
+
+  <!-- cableado: placas -> inversor -> bateria / casa -->
+  <path d="M612 324 V 356 H 512" fill="none" stroke="#3a4049" stroke-width="5"/>
+  <path class="cable" d="M612 324 V 356 H 512" fill="none" stroke="#ffd27a" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M486 390 V 420 H 560" fill="none" stroke="#3a4049" stroke-width="5"/>
+  <path class="cable" d="M486 390 V 420 H 560" fill="none" stroke="#3ddc84" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M460 372 H 350" fill="none" stroke="#3a4049" stroke-width="4"/>
+  <path class="cable" d="M460 372 H 350" fill="none" stroke="#ff9fb6" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- inversor -->
+  <rect x="460" y="338" width="52" height="56" rx="7" fill="#e4e5e8"/>
+  <rect x="468" y="347" width="36" height="15" rx="3" fill="#121519"/>
+  <path d="M472 357 l6 -5 6 4 6 -6 6 3" fill="none" stroke="#3ddc84" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle class="led" cx="486" cy="378" r="4" fill="#3ddc84"/>
+
+  <!-- bateria -->
+  <rect x="560" y="378" width="40" height="56" rx="6" fill="#1b1f24" stroke="#8b9099" stroke-width="2"/>
+  <rect x="573" y="372" width="14" height="7" rx="2" fill="#8b9099"/>
+  <rect class="nivel" x="566" y="384" width="28" height="44" rx="3" fill="#3ddc84" opacity=".85"/>
+
+  <!-- grafica de produccion -->
+  <g>
+    <rect x="592" y="30" width="184" height="108" rx="10" fill="#121519" fill-opacity=".85" stroke="rgba(255,255,255,.14)"/>
+    <text x="606" y="50" fill="rgba(255,255,255,.6)" font-family="Arial,sans-serif" font-size="9" font-weight="700" letter-spacing="1.5">PRODUCCIÓN HOY</text>
+    <circle class="led" cx="760" cy="47" r="3.5" fill="#3ddc84"/>
+    <path d="M606 124 H 762" stroke="rgba(255,255,255,.12)"/>
+    <g clip-path="url(#ps-grafica)">
+      <path class="area" d="M606 124 C 640 124, 655 64, 684 64 S 728 124, 762 124 Z" fill="url(#ps-area)"/>
+    </g>
+    <path class="curva" pathLength="1" d="M606 124 C 640 124, 655 64, 684 64 S 728 124, 762 124" fill="none" stroke="#ffc35c" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- arbol -->
+  <rect x="96" y="368" width="6" height="72" fill="#2c3138"/>
+  <circle cx="99" cy="356" r="26" fill="#1d2a22"/><circle cx="82" cy="372" r="16" fill="#1d2a22"/><circle cx="118" cy="370" r="18" fill="#1d2a22"/>
+</svg>

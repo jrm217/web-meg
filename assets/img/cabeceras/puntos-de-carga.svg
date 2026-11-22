@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <style>
+    .tubo { animation: tubo 1.6s steps(1) 1 both; }
+    .tubo.t2 { animation-delay: .25s; } .tubo.t3 { animation-delay: .5s; }
+    @keyframes tubo { 0% { opacity: .1; } 15% { opacity: 1; } 25% { opacity: .2; } 40%, 100% { opacity: 1; } }
+    .cable { stroke-dasharray: 4 12; animation: fluir .8s linear infinite; }
+    @keyframes fluir { to { stroke-dashoffset: -16; } }
+    .pulso { animation: pulso 1.8s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    @keyframes pulso { 0%, 100% { opacity: .35; transform: scale(.8); } 50% { opacity: 1; transform: scale(1.15); } }
+    .anillo { stroke-dasharray: 60 120; transform-box: fill-box; transform-origin: center; animation: gira 1.4s linear infinite; }
+    @keyframes gira { to { transform: rotate(360deg); } }
+    .relleno { transform-box: fill-box; transform-origin: left center; animation: llenar 12s ease-in-out infinite; }
+    @keyframes llenar { 0% { transform: scaleX(.18); } 80%, 100% { transform: scaleX(1); } }
+    .parpadeo { animation: parpadeo 1.2s steps(1) infinite; }
+    @keyframes parpadeo { 50% { opacity: .3; } }
+    @media (prefers-reduced-motion: reduce) {
+      .tubo, .cable, .pulso, .anillo, .relleno, .parpadeo { animation: none; }
+    }
+  </style>
+  <defs>
+    <linearGradient id="pc-muro" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d2128"/><stop offset="1" stop-color="#2a2f37"/></linearGradient>
+    <linearGradient id="pc-suelo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22262d"/><stop offset="1" stop-color="#121519"/></linearGradient>
+    <linearGradient id="pc-luz" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8f0ff" stop-opacity=".22"/><stop offset="1" stop-color="#e8f0ff" stop-opacity="0"/></linearGradient>
+    <linearGradient id="pc-coche" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c8103f"/><stop offset=".55" stop-color="#9a0026"/><stop offset="1" stop-color="#5e0018"/></linearGradient>
+    <linearGradient id="pc-cristal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b4a63"/><stop offset="1" stop-color="#151b26"/></linearGradient>
+    <radialGradient id="pc-brillo" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#3ddc84" stop-opacity=".9"/><stop offset="1" stop-color="#3ddc84" stop-opacity="0"/></radialGradient>
+    <radialGradient id="pc-sombra" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+    <clipPath id="pc-segs"><rect x="58" y="116" width="14" height="26" rx="2"/><rect x="75" y="116" width="14" height="26" rx="2"/><rect x="92" y="116" width="14" height="26" rx="2"/><rect x="109" y="116" width="14" height="26" rx="2"/><rect x="126" y="116" width="14" height="26" rx="2"/><rect x="143" y="116" width="14" height="26" rx="2"/><rect x="160" y="116" width="14" height="26" rx="2"/><rect x="177" y="116" width="14" height="26" rx="2"/><rect x="194" y="116" width="14" height="26" rx="2"/><rect x="211" y="116" width="14" height="26" rx="2"/></clipPath>
+  </defs>
+
+  <!-- garaje -->
+  <rect width="800" height="500" fill="url(#pc-muro)"/>
+  <g stroke="rgba(255,255,255,.035)" stroke-width="2"><path d="M0 140 H 800 M0 200 H 800 M0 260 H 800 M0 320 H 800 M0 380 H 800"/></g>
+  <rect width="800" height="52" fill="#121519"/>
+  <rect x="0" y="52" width="800" height="6" fill="#33373d"/>
+  <rect x="720" y="58" width="56" height="388" fill="#262b32"/>
+  <rect x="720" y="380" width="56" height="66" fill="#c8a43a"/><g stroke="#1b1f24" stroke-width="10"><path d="M720 392 l20 -12 M720 420 l56 -34 M732 446 l44 -26"/></g>
+  <rect x="728" y="120" width="40" height="28" rx="4" fill="#9a0026"/><text x="748" y="139" fill="#fff" font-family="Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle">P14</text>
+  <rect y="446" width="800" height="54" fill="url(#pc-suelo)"/>
+  <path d="M250 500 L 262 446 M712 500 L 700 446" stroke="#c8a43a" stroke-width="4" opacity=".7"/>
+
+  <!-- tubos de luz -->
+  <g class="tubo"><path d="M120 62 L 40 446 H 340 L 260 62 Z" fill="url(#pc-luz)"/><rect x="120" y="58" width="140" height="7" rx="3" fill="#eef3ff"/></g>
+  <g class="tubo t2"><path d="M380 62 L 300 446 H 600 L 520 62 Z" fill="url(#pc-luz)"/><rect x="380" y="58" width="140" height="7" rx="3" fill="#eef3ff"/></g>
+  <g class="tubo t3"><path d="M600 62 L 560 446 H 760 L 680 62 Z" fill="url(#pc-luz)"/><rect x="600" y="58" width="80" height="7" rx="3" fill="#eef3ff"/></g>
+
+  <!-- bateria en pantalla -->
+  <rect x="44" y="90" width="200" height="90" rx="10" fill="#121519" fill-opacity=".9" stroke="rgba(255,255,255,.14)"/>
+  <text x="58" y="108" fill="rgba(255,255,255,.6)" font-family="Arial,sans-serif" font-size="9" font-weight="700" letter-spacing="1.5">BATERÍA</text>
+  <g fill="rgba(255,255,255,.08)"><rect x="58" y="116" width="14" height="26" rx="2"/><rect x="75" y="116" width="14" height="26" rx="2"/><rect x="92" y="116" width="14" height="26" rx="2"/><rect x="109" y="116" width="14" height="26" rx="2"/><rect x="126" y="116" width="14" height="26" rx="2"/><rect x="143" y="116" width="14" height="26" rx="2"/><rect x="160" y="116" width="14" height="26" rx="2"/><rect x="177" y="116" width="14" height="26" rx="2"/><rect x="194" y="116" width="14" height="26" rx="2"/><rect x="211" y="116" width="14" height="26" rx="2"/></g>
+  <g clip-path="url(#pc-segs)"><rect class="relleno" x="58" y="116" width="168" height="26" fill="#3ddc84"/></g>
+  <rect x="227" y="123" width="5" height="12" rx="1.5" fill="rgba(255,255,255,.2)"/>
+  <text class="parpadeo" x="58" y="166" fill="#3ddc84" font-family="Arial,sans-serif" font-size="10" font-weight="700" letter-spacing="2">⚡ CARGANDO</text>
+
+  <!-- wallbox -->
+  <rect x="146" y="232" width="64" height="96" rx="12" fill="#e4e5e8"/>
+  <rect x="146" y="232" width="64" height="96" rx="12" fill="none" stroke="#fff" stroke-opacity=".5"/>
+  <rect x="158" y="246" width="40" height="40" rx="20" fill="#121519"/>
+  <circle class="anillo" cx="178" cy="266" r="15" fill="none" stroke="#3ddc84" stroke-width="3" stroke-linecap="round"/>
+  <path d="M180 256 l-6 11 h6 l-3 9 8 -13 h-6 z" fill="#3ddc84"/>
+  <rect x="162" y="298" width="32" height="4" rx="2" fill="#c3c6cc"/>
+  <rect class="pulso" x="170" y="308" width="16" height="4" rx="2" fill="#3ddc84"/>
+  <rect x="168" y="328" width="20" height="10" rx="3" fill="#8b9099"/>
+
+  <!-- cable -->
+  <path d="M178 338 C 178 430, 236 452, 278 434 S 310 392, 316 370" fill="none" stroke="#121519" stroke-width="7" stroke-linecap="round"/>
+  <path class="cable" d="M178 338 C 178 430, 236 452, 278 434 S 310 392, 316 370" fill="none" stroke="#3ddc84" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- coche -->
+  <ellipse cx="506" cy="448" rx="230" ry="12" fill="url(#pc-sombra)"/>
+  <path d="M302 414 L 298 372 Q 300 350 328 344 L 404 336 Q 444 300 484 292 L 584 292 Q 616 294 644 330 L 694 340 Q 716 346 718 372 L 716 414 Z" fill="url(#pc-coche)"/>
+  <path d="M310 360 H 708" stroke="#ff9fb6" stroke-opacity=".35" stroke-width="1.5"/>
+  <path d="M424 336 Q 452 308 488 302 L 542 302 V 336 Z" fill="url(#pc-cristal)"/>
+  <path d="M554 302 H 582 Q 604 304 626 334 L 554 336 Z" fill="url(#pc-cristal)"/>
+  <path d="M500 304 L 470 334" stroke="#fff" stroke-opacity=".12" stroke-width="6"/>
+  <rect x="540" y="344" width="16" height="4" rx="2" fill="#5e0018"/><rect x="460" y="344" width="16" height="4" rx="2" fill="#5e0018"/>
+  <path d="M702 352 h12 v10 h-14 z" fill="#ffe3a3"/>
+  <path d="M300 356 h8 v14 h-9 z" fill="#ff3b5c"/>
+  <circle class="pulso" cx="320" cy="370" r="18" fill="url(#pc-brillo)"/>
+  <rect x="312" y="362" width="14" height="14" rx="3" fill="#121519" stroke="#3ddc84" stroke-width="1.5"/>
+  <g fill="#121519"><circle cx="384" cy="414" r="38"/><circle cx="632" cy="414" r="38"/></g>
+  <g fill="#1b1f24" stroke="#33373d" stroke-width="4"><circle cx="384" cy="414" r="31"/><circle cx="632" cy="414" r="31"/></g>
+  <g fill="#8b9099"><circle cx="384" cy="414" r="16"/><circle cx="632" cy="414" r="16"/></g>
+  <g fill="#3a4049"><circle cx="384" cy="414" r="5"/><circle cx="632" cy="414" r="5"/></g>
+  <g stroke="#5a6069" stroke-width="3"><path d="M384 400 v28 M370 414 h28 M632 400 v28 M618 414 h28"/></g>
+</svg>
